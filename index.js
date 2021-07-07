@@ -4,7 +4,6 @@ var cors = require('cors')
 const fetch = require("node-fetch");
 const sendResponse = require("./logger");
 const mongoDB=require("./mongoDButils");
-const urlModule=require("./DBUrlKeyVault");
 
 
 app.use(cors())
@@ -39,12 +38,7 @@ app.post('/postData',function(request,response){
   response.send('cool');
 });
 
-app.get('/getdburl',function(req,res){
-  urlModule.getDBUrl(function(result){
-    console.log(result);
-    res.send(result);
-  });
-});
+
 
 const port = process.env.PORT || 1337;
 app.listen(port, function() {
