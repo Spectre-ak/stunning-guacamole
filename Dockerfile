@@ -1,4 +1,4 @@
-FROM node:12.18.1
+FROM node:latest
  
 WORKDIR /app
  
@@ -7,6 +7,8 @@ COPY package-lock.json package-lock.json
  
 RUN npm install
  
-COPY . /app
+COPY . .
+
+EXPOSE 1337
  
 CMD [ "node", "server.js" ]
