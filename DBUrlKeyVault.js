@@ -1,4 +1,5 @@
 const { SecretClient } = require("@azure/keyvault-secrets");
+const { DefaultAzureCredential } = require("@azure/identity");
 
 async function getDBUrl(callback) {
 
