@@ -4,6 +4,8 @@ var cors = require('cors')
 const fetch = require("node-fetch");
 const sendResponse = require("./logger");
 const mongoDB=require("./mongoDButils");
+const urlModule=require("./DBUrlKeyVault");
+
 
 app.use(cors())
 app.use(express.urlencoded({
@@ -23,7 +25,7 @@ app.get('/', function (req, res) {
 });
 
 app.get("/mongoUrl",function(req,res){
-  mongoDB.run(function(result){
+  mongoDB.getChartsData(function(result){
     res.send(result);
   }).catch(console.dir);
 });
@@ -37,6 +39,13 @@ app.post('/postData',function(request,response){
   response.send('cool');
 });
 
+app.get('/getdburl',function(req,res){
+  urlModule.getDBUrl(function(result){
+    console.log(result);
+    res.send(result);
+  });
+});
+
 const port = process.env.PORT || 1337;
 app.listen(port, function() {
   console.log('Express server listening on port ' + port);
@@ -45,4 +54,8 @@ app.listen(port, function() {
 
 fetch("https://s3-ap-southeast-1.amazonaws.com/he-public-data/chart2986176.json").then(response=>response.json()).then(data=>{
   sendResponse.sendResponse(data);
+  //inserted data to db
+  // mongoDB.dumpDataDB(data,function(res){
+  //   console.log(res);
+  // });
 });
