@@ -12,7 +12,7 @@ async function getDBUrl(callback) {
   
     console.log("Your secret is '" + retrievedSecret.value + "'.");
 
-    callback(retrievedSecret);
+    callback(retrievedSecret.value);
   }
   
   //main().then(() => console.log('Done')).catch((ex) => console.log(ex.message));
