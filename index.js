@@ -24,8 +24,8 @@ app.get('/', function (req, res) {
 
 app.get("/mongoUrl",function(req,res){
   mongoDB.run(function(result){
-    console.log(result);
-  });
+    res.send(result);
+  }).catch(console.dir);
 });
 
 app.post('/postData',function(request,response){
