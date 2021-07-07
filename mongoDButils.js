@@ -1,13 +1,24 @@
 const { MongoClient } = require("mongodb");
+const urlModule=require("./DBUrlKeyVault");
 
 //for locally
 //const url=require("./DBUrlModule");
 //const uri = url.dburl;
 
-const uri="as";
+var uri="";
+
+async function getUrlFromVault(){
+    await urlModule.getDBUrl(function(result){
+        console.log(result);
+        uri=result;
+    });    
+}
 
 
 async function getChartsData(callback) {
+    if(uri==="")
+        await getUrlFromVault();
+
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -35,6 +46,9 @@ async function getChartsData(callback) {
 
 
 async function dumpDataDB(data, callback) {
+    if(uri==="")
+        await getUrlFromVault();
+        
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -60,7 +74,6 @@ async function dumpDataDB(data, callback) {
 // run(result => {
 //     console.log(result);
 // });
-
 
 module.exports.getChartsData = getChartsData;
 
