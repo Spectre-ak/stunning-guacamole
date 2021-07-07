@@ -139,8 +139,9 @@ const webdriver = require('selenium-webdriver');
 
 
 
-    var { Readability } = require('@mozilla/readability');
-    var { JSDOM } = require('jsdom');/*
+   // var { Readability } = require('@mozilla/readability');
+   // var { JSDOM } = require('jsdom');
+    /*
     var doc = new JSDOM("<body>Look at this cat: <img src='./cat.jpg'></body>", {
       url: "https://www.example.com/the-page-i-got-the-source-from"
     });
@@ -184,23 +185,23 @@ const webdriver = require('selenium-webdriver');
       }
     })(); */
 
-    const {Builder, By, Key, until} = require('selenium-webdriver');
-    const chrome = require('selenium-webdriver/chrome');
-    let chrome_options = new chrome.Options();
-    chrome_options.addArguments("--no-sandbox");
-    chrome_options.addArguments("--disable-dev-shm-usage");
-    (async function example() {
-      let driver = await new webdriver.Builder()
-      .forBrowser('chrome')
-      .usingServer('http://headlesschromet.azurewebsites.net/wd/hub')
-      .withCapabilities(chrome_options)
-      .build();
-      try {
-        await driver.get("http://wolfstreet.com");
-        console.log((await ( driver.findElement(By.css("body")).getText())));
+    // const {Builder, By, Key, until} = require('selenium-webdriver');
+    // const chrome = require('selenium-webdriver/chrome');
+    // let chrome_options = new chrome.Options();
+    // chrome_options.addArguments("--no-sandbox");
+    // chrome_options.addArguments("--disable-dev-shm-usage");
+    // (async function example() {
+    //   let driver = await new webdriver.Builder()
+    //   .forBrowser('chrome')
+    //   .usingServer('http://headlesschromet.azurewebsites.net/wd/hub')
+    //   .withCapabilities(chrome_options)
+    //   .build();
+    //   try {
+    //     await driver.get("http://wolfstreet.com");
+    //     console.log((await ( driver.findElement(By.css("body")).getText())));
         
         
-      } finally {
-        await driver.quit();
-      }
-    })();
+    //   } finally {
+    //     await driver.quit();
+    //   }
+    // })();
