@@ -6,6 +6,7 @@ const urlModule=require("./DBUrlKeyVault");
 //const uri = url.dburl;
 
 var uri="";
+var data="";
 
 async function getUrlFromVault(){
     await urlModule.getDBUrl(function(result){
@@ -16,8 +17,16 @@ async function getUrlFromVault(){
 
 
 async function getChartsData(callback) {
+    
+    if(data!==""){
+        callback(data);
+        return;
+    }
+        
+    
     if(uri==="")
         await getUrlFromVault();
+
 
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -37,6 +46,7 @@ async function getChartsData(callback) {
         });
         console.log(result);
         //await client.close();
+        data=result;
         callback(result);
     } finally {
         // Ensures that the client will close when you finish/error
