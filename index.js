@@ -23,20 +23,20 @@ app.get('/', function (req, res) {
 
 });
 
-app.get("/mongoUrl",function(req,res){
+app.get("/dataset",function(req,res){
   mongoDB.getChartsData(function(result){
     res.send(result);
   }).catch(console.dir);
 });
 
-app.post('/postData',function(request,response){
-  console.log("post receiverd");
-  //console.log(request);
-  //console.log(response);
-  console.log(JSON.stringify(request.body));
-  console.log(request.body);
-  response.send('cool');
-});
+// app.post('/postData',function(request,response){
+//   console.log("post receiverd");
+//   //console.log(request);
+//   //console.log(response);
+//   console.log(JSON.stringify(request.body));
+//   console.log(request.body);
+//   response.send('cool');
+// });
 
 
 
