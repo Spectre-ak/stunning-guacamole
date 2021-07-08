@@ -18,16 +18,6 @@ app.use(express.json());
 
 
 
-
-app.get('/', function (req, res) {
-  console.log("get at main page ");
-  console.log(req);
-  console.log(res);
-  res.status(200);
-  res.send('Hello World!');
-
-});
-
 app.get("/dataset",function(req,res){
   mongoDB.getChartsData(function(result){
     res.send(result);
