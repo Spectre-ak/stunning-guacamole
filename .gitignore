@@ -1,3 +1,7 @@
 node_modules
-react-app
+react-app/node_modules
+react-app/build
+react-app/Dockerfile
+react-app/nginx
+
 DBUrlModule.js
