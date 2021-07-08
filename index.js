@@ -13,6 +13,11 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 
+  app.use('/static', express.static(__dirname + '/static'));
+  app.use(express.static(__dirname + '/static'));
+
+
+
 
 app.get('/', function (req, res) {
   console.log("get at main page ");
